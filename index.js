@@ -9,6 +9,9 @@ const port = 3000;
 let cors = require('cors');
 app.use(cors());
 
+app.get('/', (req, res) => {
+  res.end('Server is started !');
+});
 
 function highToLow(sortParam) {
   return function sort(obj1, obj2) {
