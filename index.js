@@ -42,7 +42,7 @@ function handleSort(isSortByLowToHigh, sortParam) {
 
 app.get('/hotels/sort/pricing', (req, resp) => {
   let isSortByLowToHigh = req.query.pricing === 'low-to-high' ? true : false;
-  resp.json(handleSort(isSortByLowToHigh, 'price'));
+  resp.json({ hotels:handleSort(isSortByLowToHigh, 'price')});
 });
 
 // Endpoint 2: Get the hotels sorted based on their Ratings
@@ -50,7 +50,7 @@ app.get('/hotels/sort/pricing', (req, resp) => {
 
 app.get('/hotels/sort/rating', (req, resp) => {
   let isSortByLowToHigh = req.query.rating === 'low-to-high' ? true : false;
-  resp.json(handleSort(isSortByLowToHigh, 'rating'));
+  resp.json({ hotels:handleSort(isSortByLowToHigh, 'rating')});
 });
 
 // Endpoint 3: Get the Hotels sorted based on their Reviews
@@ -58,7 +58,7 @@ app.get('/hotels/sort/rating', (req, resp) => {
 
 app.get('/hotels/sort/reviews', (req, resp) => {
   let isSortByLowToHigh = req.query.reviews === 'least-to-most' ? true : false;
-  resp.json(handleSort(isSortByLowToHigh, 'reviews'));
+  resp.json({ hotels:handleSort(isSortByLowToHigh, 'reviews')});
 });
 
 // filter
@@ -75,7 +75,7 @@ function filterBy(field, param) {
 app.get('/hotels/filter/amenity', (req, resp) => {
   let field = req.query.amenity;
   let filteredHotels = filterBy(field, 'amenity');
-  resp.json(filteredHotels);
+  resp.json({ hotels:filteredHotels});
 });
 
 // Endpoint 5: Filter the hotels based on the selected Country
@@ -85,7 +85,7 @@ app.get('/hotels/filter/country', (req, resp) => {
   let hotelsCopy = hotels.slice();
   let field = req.query.country;
   let filteredHotels = filterBy(field, 'country');
-  resp.json(filteredHotels);
+  resp.json({ hotels:filteredHotels});
 });
 
 // Endpoint 6: Filter the hotels based on the selected Category
@@ -95,14 +95,14 @@ app.get('/hotels/filter/category', (req, resp) => {
   let hotelsCopy = hotels.slice();
   let field = req.query.category;
   let filteredHotels = filterBy(field, 'category');
-  resp.json(filteredHotels);
+  resp.json({ hotels:filteredHotels});
 });
 
 // Send all hotels
 // /hotels
 
 app.get('/hotels', (req, resp) => {
-  resp.json(hotels);
+  resp.json({ hotels:hotels });
 });
 
 app.listen(port, () => {
